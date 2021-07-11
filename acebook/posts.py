@@ -2,7 +2,6 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
-
 from acebook.auth import login_required
 from acebook.db import get_db
 
@@ -36,7 +35,7 @@ def create():
             db.execute(
                 'INSERT INTO post (title, body, author_id)'
                 ' VALUES (?, ?, ?)',
-                (title, body, g.user['id'])
+                (title, body, g.user.id)
             )
             db.commit()
             return redirect(url_for('posts.index'))

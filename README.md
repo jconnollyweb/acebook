@@ -12,7 +12,7 @@ This template app was built using Python3, the Flask microframework and pytest.
 - posts.py and auth.py are views (the equivalent of Sinatra controllers)
 - post.py and user.py are models
 - db.py looks after creating the database connection
-- 
+
 ## Setup
 - Install Python3
 - Create a virtual environment `python3 -m venv venv`

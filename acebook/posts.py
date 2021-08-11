@@ -27,7 +27,6 @@ def create():
         if error is not None:
             flash(error)
         else:
-            # db = get_db()
             Post.create(title, body, g.user.id)
             return redirect(url_for('posts.index'))
 

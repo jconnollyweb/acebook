@@ -30,3 +30,6 @@ This template app was built using Python3, the Flask microframework and pytest.
 ## Dependency management
 - Add further dependencies to `setup.py`
 - Then run this to install them `pip3 install -e .`
+
+## Altering the database
+At some point in the not too distant future, you'll want to alter the database in some way. E.g. By adding a new column to an existing table or by creating a new table. The simplest way to do this is to edit `schema.sql`, then re-run `flask init-db`. BUT... this will drop and recreate the existing tables and you'll lose any data contained within them.

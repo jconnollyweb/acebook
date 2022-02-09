@@ -12,16 +12,17 @@ This template app was built using Python3, the Flask microframework and pytest.
 - posts.py and auth.py are views (the equivalent of Sinatra controllers)
 - post.py and user.py are models
 - db.py looks after creating the database connection
-- 
+
 ## Setup
 - Install Python3
 - Create a virtual environment `python3 -m venv venv`
 - Activate the virtual environment `. venv/bin/activate`
 - Install the dependencies `pip3 install -e .`
 - Install chromedriver for feature testing `sbase install chromedriver`
-- Create and migrate the database `flask init-db`
-- Run the app
+- Create and migrate the database
   * `export FLASK_APP=acebook`
+  * `flask init-db`
+- Run the app
   * `flask run`
 
 ## Running the tests

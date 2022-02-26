@@ -21,6 +21,9 @@ This template app was built using Python3, the Flask web framework and Pytest.
 To run the server:
 
 ```shell
+# Install dependencies
+; pipenv install
+
 # Set up the database
 ; FLASK_APP=acebook pipenv run flask init-db
 

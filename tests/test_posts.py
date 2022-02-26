@@ -5,7 +5,7 @@ fake = Faker()
 
 class TestPosts(BaseCase):
   def test_create_and_list(self):
-    self.open('http://localhost:5000/auth/register')
+    self.open('http://127.0.0.1:5000/auth/register')
     username = fake.name()
     self.type('input[name="username"]', username)
     self.type('input[name="password"]', "12345678")

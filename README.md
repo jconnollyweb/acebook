@@ -21,6 +21,9 @@ This template app was built using Python3, the Flask web framework and Pytest.
 To run the server:
 
 ```shell
+# If you haven't installed pipenv yet, install that first.
+; pip3 install --user pipenv
+
 # Install dependencies
 ; pipenv install
 

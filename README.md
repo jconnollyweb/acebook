@@ -82,3 +82,32 @@ you'll lose any data contained within them.
 Click an emoji to tell us.
 
 <!-- END GENERATED SECTION DO NOT EDIT -->
+
+# Acebook - Team Pandas
+Team Members: John, Mathew, Lynsey, Abdul, Dan
+
+This project is part of the Makers Apprentice Programming Course, and constitutes weeks 9 and 10 of the course. This project will take place over 2 weeks.
+
+
+## Progress Log
+Day 1:
+- Discussed and set out ground rules for team working, eg. breaks, meeting frequency.
+- Forked GitHub repo and invited team members to collaborate.
+- Quick, high-level review of the existing codebase, including running the app in its current form.
+- Copied existing Trello board, reviewed outstanding actions and populated it with new actions based on our agreed vision for the project.
+
+Day 2:
+- Moved calls over to Discord as Zoom was not meeting our needs for longer meetings.
+- Created diagrams of current and envisioned project (see below).
+- As a team, work through existing code and try to understand the syntax, modules and databases that we are unfamiliar with.
+- Arranged our Trello board actions into groups in an attempt to minimise future merge conflicts.
+- Created a shared vision of the MVP, discussed the small steps required to fulfill of our MVP actions, and tried to see where blockers may occur.
+
+**MVP map**
+![/MVP](https://imgur.com/vau1Sub)
+
+**Posts page (/index)**
+![/index](https://imgur.com/iUro8aA)
+
+**New post page (/create)**
+![/create](https://imgur.com/bkJv1af)

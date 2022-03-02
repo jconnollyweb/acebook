@@ -8,10 +8,20 @@ from acebook.post import Post
 
 bp = Blueprint('posts', __name__)
 
-@bp.route('/')
+@bp.route('/', methods=('GET',))
 def index():
     posts = Post.all()
     return render_template('posts/index.html', posts=posts)
+
+@bp.route('/likes', methods=('POST',))
+@login_required
+def index2():
+    posts = Post.all()
+    user_id = request.form['user_id']
+    print(f"User id:")
+    print(user_id)
+    # return render_template('posts/index.html', posts=posts)
+    return redirect(url_for('index'))
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required

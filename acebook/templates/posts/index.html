@@ -18,6 +18,10 @@
         {% if g.user.id == post.author_id %}
           <a class="action" href="{{ url_for('posts.update', id=post.id) }}">Edit</a>
         {% endif %}
+        <form action="/likes" method="post">
+          <input type="hidden" name="user_id" value="{{ g.user.id }}">
+          <input type="submit" value="Like">
+        </form>
       </header>
       <p class="body">{{ post.body }}</p>
     </article>

@@ -5,6 +5,7 @@ from werkzeug.exceptions import abort
 from acebook.auth import login_required
 from acebook.db import get_db
 from acebook.post import Post
+from acebook.liked import Liked
 
 bp = Blueprint('posts', __name__)
 
@@ -18,10 +19,17 @@ def index():
 def index2():
     posts = Post.all()
     user_id = request.form['user_id']
-    print(f"User id:")
-    print(user_id)
-    # return render_template('posts/index.html', posts=posts)
-    return redirect(url_for('index'))
+    post_id = request.form['post_id']
+    # print(f"User id:")
+    # print(user_id)
+    # print(f"Post_id:")
+    # print(post_id)
+    # print(int(post_id))
+    liked = Liked()
+    liked.user_likes_post(user_id, post_id)
+
+    # return redirect(url_for('index'))
+    return render_template('posts/index.html', posts=posts, post_id=int(post_id), user_id=user_id)
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required

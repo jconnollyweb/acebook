@@ -20,8 +20,12 @@
         {% endif %}
         <form action="/likes" method="post">
           <input type="hidden" name="user_id" value="{{ g.user.id }}">
+          <input type="hidden" name="post_id" value="{{ post.id }}">
           <input type="submit" value="Like">
         </form>
+        {% if post.id == post_id %}
+          <div class="liked">User id: {{ user_id }} has liked this post!</div>
+        {% endif %}
       </header>
       <p class="body">{{ post.body }}</p>
     </article>

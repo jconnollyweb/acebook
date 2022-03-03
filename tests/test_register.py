@@ -9,5 +9,5 @@ class TestRegister(BaseCase):
     self.type('input[name="username"]', username)
     self.type('input[name="password"]', "12345678")
     self.click('input[value="Register"]')
-    self.assert_text("test")
-    # self.assert_text(username)
+    self.assert_text("Profile")
+    self.assert_text(username)

@@ -41,6 +41,7 @@ def create_app(test_config=None):
     def profile():
         return render_template('profile.html')
 
+
     # from the current folder, import the db file. Run the init_app method, this starts the connection to the database
     from . import db
     db.init_app(app)

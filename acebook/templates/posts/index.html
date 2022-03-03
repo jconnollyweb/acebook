@@ -24,7 +24,11 @@
           <input type="submit" value="Like">
         </form>
         {% if post.id == post_id %}
-          <div class="liked">User id: {{ user_id }} has liked this post!</div>
+          <p> Liked by: </p>
+          <ls>{% for liked_usernames in liked_usernames %}
+            <p>{{ liked_usernames[0] }}</p>
+          {% endfor %}</ls>
+          <div class="liked">You have liked this post!</div>
         {% endif %}
       </header>
       <p class="body">{{ post.body }}</p>

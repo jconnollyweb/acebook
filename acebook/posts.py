@@ -20,22 +20,10 @@ def index2():
     posts = Post.all()
     user_id = request.form['user_id']
     post_id = request.form['post_id']
-    # print(f"User id:")
-    # print(user_id)
-    # print(f"Post_id:")
-    # print(post_id)
-    # print(int(post_id))
     liked = Liked()
     liked.user_likes_post(user_id, post_id)
     username_like = liked.user_retrieve(user_id)
     liked_usernames = liked.username_list(post_id)
-    
-    print("Username:")
-    print(liked_usernames)
-    # print(username_like)
-    # return redirect(url_for('index'))
-    
-    
     return render_template('posts/index.html', posts=posts, post_id=int(post_id), username_like=username_like, liked_usernames=liked_usernames)
 
 @bp.route('/create', methods=('GET', 'POST'))

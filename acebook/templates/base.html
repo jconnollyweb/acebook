@@ -2,14 +2,17 @@
 <title>{% block title %}{% endblock %} - Acebook</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <nav>
-  <h1>Acebook</h1>
+  <a href="/">
+    <h1>Acebook</h1>
+  </a>
   <ul>
     {% if g.user %}
-      <li><span>{{ g.user.username }}</span>
-      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+      <li><a href="profile">{{ g.user.username }}'s Profile</a></li>
+      <li><a href="#">Friends</a></li>
+      <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
     {% else %}
-      <li><a href="{{ url_for('auth.register') }}">Register</a>
-      <li><a href="{{ url_for('auth.login') }}">Log In</a>
+      <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
     {% endif %}
   </ul>
 </nav>

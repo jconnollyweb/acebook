@@ -1,7 +1,11 @@
 # importing modules: 'os' - provides a portable way of using operating system functionality
 # 'flask' - the web development framework
 import os
+from acebook.auth import login_required
 from flask import Flask
+from flask import (
+    Blueprint, flash, g, redirect, render_template, request, session, url_for
+)
 
 # creating a method called create_app, test_config set to None by default
 def create_app(test_config=None):
@@ -31,6 +35,12 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
+
+    @app.route('/profile')
+    @login_required
+    def profile():
+        return render_template('profile.html')
+
 
     # from the current folder, import the db file. Run the init_app method, this starts the connection to the database
     from . import db

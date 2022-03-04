@@ -39,8 +39,13 @@ def register():
         # if there is no error found, create a new User class with the given username and password, then redirect to auth/login
         if error is None:
             User.create(username, password)
+            session.clear()
+            flash(f"Registration success! Welcome {username}.")
+            user = User.find(username)
+            session['user_id'] = user.id
+            return redirect(url_for('profile'))
+            
             # this can be altered to redirect to a different route - use of sessions to log in after registering?
-            return redirect(url_for('auth.login'))
 
         # if there is an error, flash it on the front end 
         flash(error)

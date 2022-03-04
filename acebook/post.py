@@ -71,3 +71,11 @@ class Post():
     db = get_db()
     db.execute('DELETE FROM post WHERE id = ?', (self.id,))
     db.commit()
+
+  def liked(self, user_id):
+    db = get_db()
+    db.execute('INSERT INTO likes (users_id, posts_id)'
+      ' VALUES (?, ?, ?)',
+      (user_id, self.id)
+      )
+    db.commit()

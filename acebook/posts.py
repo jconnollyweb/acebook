@@ -1,3 +1,4 @@
+from xml.etree.ElementTree import Comment
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
@@ -6,6 +7,7 @@ from acebook.auth import login_required
 from acebook.db import get_db
 from acebook.post import Post
 from acebook.liked import Liked
+from acebook.comments import Comments
 
 bp = Blueprint('posts', __name__)
 
@@ -25,6 +27,18 @@ def index2():
     username_like = liked.user_retrieve(user_id)
     liked_usernames = liked.username_list(post_id)
     return render_template('posts/index.html', posts=posts, post_id=int(post_id), username_like=username_like, liked_usernames=liked_usernames)
+
+@bp.route('/comments', methods=('POST',))
+@login_required
+def index3():
+    posts = Post.all()
+    user_id = request.form['user_id']
+    post_id = request.form['post_id']
+    comment_id = request.form['comment']
+    comment = Comments()
+    comment.user_comments_on_post(user_id, post_id, comment_id)
+    comment = comment.comment_list(post_id) 
+    return render_template('posts/index.html', posts=posts, post_id=int(post_id), comment=comment)
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required

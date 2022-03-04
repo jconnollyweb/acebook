@@ -47,7 +47,8 @@ class Post():
       post['id'],
       post['created'],
       post['author_id'],
-      post['username']
+      post['username'],
+      
     )
 
   def __init__(self, title, body, id, created, author_id, username):
@@ -57,6 +58,7 @@ class Post():
     self.created = created
     self.author_id = author_id
     self.username = username
+    
 
   def update(self, title, body, id):
     db = get_db()

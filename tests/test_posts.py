@@ -64,3 +64,18 @@ class TestPosts(BaseCase):
     self.open('http://127.0.0.1:5000')
     self.click('input[value="Like"]')
     self.assert_text("Log In")
+
+  def test_static_image_showing(self):
+    self.open('http://127.0.0.1:5000/auth/register')
+    username = fake.name()
+    self.type('input[name="username"]', username)
+    self.type('input[name="password"]', "12345678")
+    self.click('input[value="Register"]')
+    self.open('http://127.0.0.1:5000')
+    self.click_link("New")
+    title = fake.sentence()
+    body = fake.sentence()
+    self.type('input[name="title"]', title)
+    self.type('textarea[name="body"]', body)
+    self.click('input[value="Save"]')
+    self.assert_element(f'img[src="{post.image}"]')

@@ -8,7 +8,8 @@ class Liked():
       (user_id, post_id)
       )
     db.commit()
-    
+  
+  #Currently not in use but could be useful later??? :)   
   def user_retrieve(self, user_id):
       likes = get_db().execute('SELECT username'
         ' FROM likes l JOIN user u ON l.users_id = u.id'
@@ -24,12 +25,6 @@ class Liked():
         ' WHERE l.posts_id = ?',
         (post_id,)
       ).fetchall()
-    
-      # username_list = []
-    
-      # for i in liked_list:
-      #   username_list.append(str(i))
-
       return liked_list
     
     

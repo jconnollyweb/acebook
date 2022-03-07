@@ -133,3 +133,17 @@ input[type=submit] {
    align-self: start;
    min-width: 10em;
 }
+
+.comment{
+   /* line-height: 3px; */
+   height: auto;
+   font-size: 10px;
+   background-color: white;
+   margin-left: 20px;
+   margin-right: 20px;
+}
+
+.comment h3{
+   color: forestgreen;
+   
+}

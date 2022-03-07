@@ -34,21 +34,25 @@
         </div>
       </header>
       <p class="body">{{ post.body }}</p>
-    </article>
-    <hr>
+      <hr>
     {% if post.id == post_id %}
-        <div class="comments">Comments:</div>
-        <ls>{% for comments in comment %}
-         <p>{{ comments[1]}}, <p>commented on by </p>{{comments[0] }}<p>on</p> {{ comments[2].strftime('%Y-%m-%d') }}</p>
-        {% endfor %}</ls>
+        <div class="comments"></div>
+        {% for comments in comment %}
+         <div class="comment">
+           <h3>"{{ comments[1]}}"</h3> <p>commented on by <a href="#">{{comments[0] }}</a> at {{ comments[2].strftime('%H-%M ') }} on {{ comments[2].strftime('%Y-%m-%d ') }}</p><hr>
+         </div>
+        {% endfor %}
         {% endif %}
-    {% if not loop.last %}
-    <form action="/comments" method="post">
-      <input type="text" name="comment" method="post">
-      <input type="hidden" name="user_id" value="{{ g.user.id }}">
-      <input type="hidden" name="post_id" value="{{ post.id }}">
-      <input type="submit" value="comment">
-    </form>
+        <form action="/comments" method="post">
+          <input type="text" name="comment" method="post">
+          <input type="hidden" name="user_id" value="{{ g.user.id }}">
+          <input type="hidden" name="post_id" value="{{ post.id }}">
+          <input type="submit" value="comment">
+        </form>
+    <!-- {% if not loop.last %} -->
+    
+    </article>
+    
       <hr>
       
     {% endif %}

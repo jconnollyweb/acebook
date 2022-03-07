@@ -1,25 +1,34 @@
+import os
 from acebook.db import get_db
 
 class Post():
 
   @classmethod
-  def create(cls, title, body, user_id):
+  def create(cls, title, body, user_id, pic):
     db = get_db()
     db.execute(
-      'INSERT INTO post (title, body, author_id)'
-      ' VALUES (?, ?, ?)',
-      (title, body, user_id)
+      'INSERT INTO post (title, body, author_id, photo)'
+      ' VALUES (?, ?, ?, ?)',
+      (title, body, user_id, pic)
     )
     db.commit()
+
+  def writeTofile(data, name):
+    # Convert binary data to proper format and write it on Hard Disk
+    filename = os.path.join("acebook/static/uploaded_pics", name)
+    with open(filename, 'wb') as file:
+        file.write(data)
+    print("Stored blob data into: ", filename, "\n")
+    return name
 
   @classmethod
   def all(cls):
     db = get_db()
     posts = db.execute(
-      'SELECT p.id, title, body, created, author_id, username'
+      'SELECT p.id, title, body, created, author_id, username, photo'
       ' FROM post p JOIN user u ON p.author_id = u.id'
       ' ORDER BY created DESC'
-    ).fetchall()
+    ).fetchall()  
 
     return [
       Post(
@@ -28,7 +37,8 @@ class Post():
         post['id'],
         post['created'],
         post['author_id'],
-        post['username']
+        post['username'],
+        Post.writeTofile(post['photo'], str(post['id']) + ".jpeg")
       ) for post in posts
     ]
 
@@ -51,13 +61,14 @@ class Post():
       
     )
 
-  def __init__(self, title, body, id, created, author_id, username):
+  def __init__(self, title, body, id, created, author_id, username, pic):
     self.title = title
     self.body = body
     self.id = id
     self.created = created
     self.author_id = author_id
     self.username = username
+    self.pic = pic
     
 
   def update(self, title, body, id):

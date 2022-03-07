@@ -33,7 +33,7 @@
         {% endif %}
         </div>
       </header>
-      <img src="{{ post_image }}">
+      <img src="{{ url_for('static', filename='uploaded_pics/' + post.pic) }}" style="width:100px;height:100px;">
       <p class="body">{{ post.body }}</p>
     </article>
     {% if not loop.last %}

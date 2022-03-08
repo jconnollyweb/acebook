@@ -10,36 +10,50 @@
 {% block content %}
   {% for post in posts %}
     <article class="post">
-      <header>
-        <div>
-          <h1>{{ post.title }}</h1>
-          <div class="about">by {{ post.username }} on {{ post.created.strftime('%Y-%m-%d') }}</div>
-        </div>
-        {% if g.user.id == post.author_id %}
-          <a class="action" href="{{ url_for('posts.update', id=post.id) }}">Edit</a>
-        {% endif %}
-        <form action="/likes" method="post">
-          <input type="hidden" name="user_id" value="{{ g.user.id }}">
-          <input type="hidden" name="post_id" value="{{ post.id }}">
-          <input type="submit" value="Like">
-        </form>
-        <div>
-        {% if post.id == post_id %}
-          <div class="liked">You have liked this post!</div>
-          <p> Liked by: </p>
-          <ls>{% for liked_usernames in liked_usernames %}
-            <p>{{ liked_usernames[0] }}</p>
-          {% endfor %}</ls>
-        {% endif %}
+    <div class="message">
+        <header>
+          <div>
+            <h1>{{ post.title }}</h1>
+            <div class="about">by {{ post.username }} on {{ post.created.strftime('%Y-%m-%d') }}</div>
+            <p class="body">{{ post.body }}</p>
+          </div>
+          {% if g.user.id == post.author_id %}
+            <a class="action" href="{{ url_for('posts.update', id=post.id) }}">Edit</a>
+          {% endif %}
+        <div class="likes_section">
+          <form action="/" method="post">
+            <input type="hidden" name="user_id" value="{{ g.user.id }}">
+            <input type="hidden" name="post_id" value="{{ post.id }}">
+            <input type="submit" value="Like" >
+          </form>
+        <p> Liked by: </p>
+        {% for like in likes %}
+          {% if post.id == like.post_id %}
+               <p>{{ like.user_id }}</p>
+          {% endif %}
+        {% endfor %}
         </div>
       </header>
       {% if post.pic %}
         <img src="{{ url_for('static', filename='uploaded_pics/' + post.pic) }}" style="width:100px;height:100px;">
       {% endif %}
       <p class="body">{{ post.body }}</p>
+    </div>
+    <hr>
+    {% for comment in comments %}
+      {% if post.id == comment.post_id %}
+         <div class="comment">
+           <h3>"{{ comment.comment_body}}"</h3> <p>commented on by <a href="#">{{comment.user_id }}</a> </p><hr>
+         </div>
+      {% endif %}
+    {% endfor %}
+      <form action="/" method="post">
+        <input type="text" name="comment" method="post">
+        <input type="hidden" name="user_id" value="{{ g.user.id }}">
+        <input type="hidden" name="post_id" value="{{ post.id }}">
+        <input type="submit" value="comment">
+      </form>
     </article>
-    {% if not loop.last %}
-      <hr>
-    {% endif %}
+    <hr>
   {% endfor %}
 {% endblock %}

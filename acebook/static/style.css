@@ -133,3 +133,38 @@ input[type=submit] {
    align-self: start;
    min-width: 10em;
 }
+
+
+
+.comment{
+   /* line-height: 3px; */
+   height: auto;
+   font-size: 10px;
+   background-color: white;
+   margin-left: 20px;
+   margin-right: 20px;
+}
+
+.comment h3{
+   color: forestgreen;
+   
+}
+
+header{
+   display: flex;
+   justify-content: space-between;
+   margin-left: 20px;
+}
+
+.likes_section input{
+   background-color: forestgreen;
+   border-radius: 20px;
+   padding: 5px 10px ;
+   border: 2px solid forestgreen;
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   font-size: 16px;
+}
+
+.likes_section input:hover{
+   background-color: goldenrod;
+}

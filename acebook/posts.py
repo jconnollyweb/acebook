@@ -46,15 +46,21 @@ def create():
             if uploaded_file.filename != '':
                 uploaded_file.save(os.path.join("acebook/static/uploaded_pics", uploaded_file.filename))
                 photo_binary = convertToBinaryData(os.path.join("acebook/static/uploaded_pics", uploaded_file.filename))
+            else:
+                photo_binary = None                
             Post.create(title, body, g.user.id, photo_binary)
-            os.remove(os.path.join("acebook/static/uploaded_pics", uploaded_file.filename))
+            print('this below is post.create')
+            # if photo_binary != None:
+                # os.remove(os.path.join("acebook/static/uploaded_pics", uploaded_file.filename))
             return redirect(url_for('posts.index'))
 
     return render_template('posts/create.html')
 
 def convertToBinaryData(filename):
+    print('convert working')
     with open(filename, 'rb') as file:
         blobData = file.read()
+        print(blobData)
     return blobData 
 
 def get_post(id, check_author=True):

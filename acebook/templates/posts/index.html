@@ -33,7 +33,9 @@
         {% endif %}
         </div>
       </header>
-      <img src="{{ url_for('static', filename='uploaded_pics/' + post.pic) }}" style="width:100px;height:100px;">
+      {% if post.pic %}
+        <img src="{{ url_for('static', filename='uploaded_pics/' + post.pic) }}" style="width:100px;height:100px;">
+      {% endif %}
       <p class="body">{{ post.body }}</p>
     </article>
     {% if not loop.last %}

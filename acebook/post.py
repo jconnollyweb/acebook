@@ -5,21 +5,33 @@ class Post():
 
   @classmethod
   def create(cls, title, body, user_id, pic):
+    print('this below is pic')
+    print(F"pic is this {pic}")
     db = get_db()
-    db.execute(
-      'INSERT INTO post (title, body, author_id, photo)'
-      ' VALUES (?, ?, ?, ?)',
-      (title, body, user_id, pic)
-    )
+    if pic == None:
+      db.execute(
+        'INSERT INTO post (title, body, author_id)'
+              ' VALUES (?, ?, ?)',
+        (title, body, user_id)
+      )
+    else:
+      db.execute(
+        'INSERT INTO post (title, body, author_id, photo)'
+              ' VALUES (?, ?, ?, ?)',
+        (title, body, user_id, pic)
+      )    
     db.commit()
 
   def writeTofile(data, name):
+    if data == None:
+      return None
+    else:
     # Convert binary data to proper format and write it on Hard Disk
-    filename = os.path.join("acebook/static/uploaded_pics", name)
-    with open(filename, 'wb') as file:
-        file.write(data)
-    print("Stored blob data into: ", filename, "\n")
-    return name
+      filename = os.path.join("acebook/static/uploaded_pics", name)
+      with open(filename, 'wb') as file:
+          file.write(data)
+      print("Stored blob data into: ", filename, "\n")
+      return name
 
   @classmethod
   def all(cls):

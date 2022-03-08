@@ -32,8 +32,10 @@ def index():
         posts = Post.all()
         return render_template('posts/index.html', posts=posts, comments=comments, likes=likes)
 
+    comments = Comments.all()
+    likes = Like.all()
     posts = Post.all()
-    return render_template('posts/index.html', posts=posts)
+    return render_template('posts/index.html', posts=posts, comments=comments, likes=likes)
 
 # @bp.route('/likes', methods=('POST',))
 # @login_required

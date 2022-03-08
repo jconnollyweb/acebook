@@ -57,7 +57,7 @@ class Post():
   @classmethod
   def find_by_id(cls, id):
     post = get_db().execute(
-      'SELECT p.id, title, body, created, author_id, username'
+      'SELECT p.id, title, body, created, author_id, username, photo'
       ' FROM post p JOIN user u ON p.author_id = u.id'
       ' WHERE p.id = ?',
       (id,)
@@ -70,6 +70,7 @@ class Post():
       post['created'],
       post['author_id'],
       post['username'],
+      post['photo']
       
     )
 
@@ -83,12 +84,12 @@ class Post():
     self.pic = pic
     
 
-  def update(self, title, body, id):
+  def update(self, title, body, id, photo):
     db = get_db()
     db.execute(
-      'UPDATE post SET title = ?, body = ?'
+      'UPDATE post SET title = ?, body = ?, photo = photo'
       ' WHERE id = ?',
-      (title, body, id)
+      (title, body, id, photo)
     )
     db.commit()
 

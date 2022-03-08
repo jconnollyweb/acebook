@@ -117,6 +117,7 @@ def update(id):
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
+        photo = photo
         error = None
 
         if not title:
@@ -126,7 +127,7 @@ def update(id):
             flash(error)
         else:
             db = get_db()
-            post.update(title, body, id)
+            post.update(title, body, id, photo)
             return redirect(url_for('posts.index'))
 
     return render_template('posts/update.html', post=post)

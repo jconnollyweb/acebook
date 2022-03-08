@@ -29,7 +29,7 @@ CREATE TABLE comments (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   users_id INTEGER NOT NULL,
   posts_id INTEGER NOT NULL,
-  comment_id TEXT NOT NULL,
+  comment_body TEXT NOT NULL,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (users_id) REFERENCES user (id),
   FOREIGN KEY (posts_id) REFERENCES post (id)

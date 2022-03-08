@@ -6,39 +6,58 @@ from werkzeug.exceptions import abort
 from acebook.auth import login_required
 from acebook.db import get_db
 from acebook.post import Post
-from acebook.liked import Liked
+from acebook.liked import Like
 from acebook.comments import Comments
 
 bp = Blueprint('posts', __name__)
 
-@bp.route('/', methods=('GET',))
+@bp.route('/', methods=('GET', 'POST'))
 def index():
+    if request.method == 'POST':
+        user_id = request.form['user_id']
+        post_id = request.form['post_id']
+        # comment = request.form['comment']
+        try:
+            comment = request.form['comment']
+            print(comment)
+            Comments.create(user_id, post_id, comment)
+        except:
+            Like.create(user_id, post_id)
+        # if comment:
+        #     Comments.create(user_id, post_id, comment)
+        # else:
+        #     Like.create(user_id, post_id)
+        comments = Comments.all()
+        likes = Like.all()
+        posts = Post.all()
+        return render_template('posts/index.html', posts=posts, comments=comments, likes=likes)
+
     posts = Post.all()
     return render_template('posts/index.html', posts=posts)
 
-@bp.route('/likes', methods=('POST',))
-@login_required
-def index2():
-    posts = Post.all()
-    user_id = request.form['user_id']
-    post_id = request.form['post_id']
-    liked = Liked()
-    liked.user_likes_post(user_id, post_id)
-    username_like = liked.user_retrieve(user_id)
-    liked_usernames = liked.username_list(post_id)
-    return render_template('posts/index.html', posts=posts, post_id=int(post_id), username_like=username_like, liked_usernames=liked_usernames)
+# @bp.route('/likes', methods=('POST',))
+# @login_required
+# def index2():
+#     posts = Post.all()
+#     user_id = request.form['user_id']
+#     post_id = request.form['post_id']
+#     liked = Liked()
+#     liked.user_likes_post(user_id, post_id)
+#     username_like = liked.user_retrieve(user_id)
+#     liked_usernames = liked.username_list(post_id)
+#     return render_template('posts/index.html', posts=posts, post_id=int(post_id), username_like=username_like, liked_usernames=liked_usernames)
 
-@bp.route('/comments', methods=('POST',))
-@login_required
-def index3():
-    posts = Post.all()
-    user_id = request.form['user_id']
-    post_id = request.form['post_id']
-    comment_id = request.form['comment']
-    comment = Comments()
-    comment.user_comments_on_post(user_id, post_id, comment_id)
-    comment = comment.comment_list(post_id) 
-    return render_template('posts/index.html', posts=posts, post_id=int(post_id), comment=comment)
+# @bp.route('/comments', methods=('POST',))
+# @login_required
+# def index3():
+#     posts = Post.all()
+#     user_id = request.form['user_id']
+#     post_id = request.form['post_id']
+#     comment_id = request.form['comment']
+#     comment = Comments()
+#     comment.user_comments_on_post(user_id, post_id, comment_id)
+#     comment = comment.comment_list(post_id) 
+#     return render_template('posts/index.html', posts=posts, post_id=int(post_id), comment=comment)
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required

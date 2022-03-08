@@ -1,3 +1,4 @@
+import os
 from xml.etree.ElementTree import Comment
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
@@ -75,10 +76,27 @@ def create():
         if error is not None:
             flash(error)
         else:
-            Post.create(title, body, g.user.id)
+            uploaded_file = request.files['file']
+            photo_binary = None
+            if uploaded_file.filename != '':
+                uploaded_file.save(os.path.join("acebook/static/uploaded_pics", uploaded_file.filename))
+                photo_binary = convertToBinaryData(os.path.join("acebook/static/uploaded_pics", uploaded_file.filename))
+            else:
+                photo_binary = None                
+            Post.create(title, body, g.user.id, photo_binary)
+            print('this below is post.create')
+            # if photo_binary != None:
+                # os.remove(os.path.join("acebook/static/uploaded_pics", uploaded_file.filename))
             return redirect(url_for('posts.index'))
 
     return render_template('posts/create.html')
+
+def convertToBinaryData(filename):
+    print('convert working')
+    with open(filename, 'rb') as file:
+        blobData = file.read()
+        print(blobData)
+    return blobData 
 
 def get_post(id, check_author=True):
     post = Post.find_by_id(id)

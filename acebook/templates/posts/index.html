@@ -26,11 +26,14 @@
             <input type="submit" value="Like" >
           </form>
         <p> Liked by: </p>
-        {% for like in likes %}
-          {% if post.id == like.post_id %}
-               <p>{{ like.user_id }}</p>
-          {% endif %}
-        {% endfor %}
+        {% set exists = [] %}
+          {% for like in likes %}
+            {% if post.id == like.post_id %}
+                {% if exists.append(1) %}{% endif %}
+                <p>{{ like.user_id }}</p>
+            {% endif %}
+          {% endfor %}
+        <p> &hearts;  {{ exists|length }} </p>
         </div>
       </header>
       {% if post.pic %}

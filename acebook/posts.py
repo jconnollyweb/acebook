@@ -37,6 +37,14 @@ def index():
     likes = Like.all()
     posts = Post.all()
     return render_template('posts/index.html', posts=posts, comments=comments, likes=likes)
+    
+@bp.route('/dislike', methods=('POST',))
+@login_required
+def index2():
+    user_id = request.form['user_id']
+    post_id = request.form['post_id']
+    Like.delete(user_id, post_id)
+    return redirect(url_for('posts.index'))
 
 # @bp.route('/likes', methods=('POST',))
 # @login_required

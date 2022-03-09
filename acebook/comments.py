@@ -21,14 +21,14 @@ class Comments():
   def all(cls):
     db = get_db()
     comments = db.execute(
-      'SELECT c.id, users_id, posts_id, comment_body, created'
+      'SELECT c.id, u.username, posts_id, comment_body, created'
       ' FROM comments c JOIN user u ON c.users_id = u.id'
       ' ORDER BY created DESC'
     ).fetchall()
 
     return [
       Comments(
-        comment['users_id'],
+        comment['username'],
         comment['posts_id'],
         comment['comment_body'],
         comment['created']

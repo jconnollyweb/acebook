@@ -11,11 +11,10 @@
       value="{{ request.form['title'] or post.title }}" required>
     <label for="body">Body</label>
     <textarea name="body" id="body">{{ request.form['body'] or post.body }}</textarea>
-    <img src="{{ url_for('static', filename='uploaded_pics/" id="post-image">
     <input type="submit" value="Save">
   </form>
   <hr>
-  <form action="{{ url_for('posts.delete', id=post.id) }}" method="post">
+  <form action="" method="post">
     <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
   </form>
 {% endblock %}

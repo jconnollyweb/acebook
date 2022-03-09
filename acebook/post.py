@@ -5,8 +5,6 @@ class Post():
 
   @classmethod
   def create(cls, title, body, user_id, pic):
-    print('this below is pic')
-    print(F"pic is this {pic}")
     db = get_db()
     if pic == None:
       db.execute(
@@ -84,12 +82,12 @@ class Post():
     self.pic = pic
     
 
-  def update(self, title, body, id, photo):
+  def update(self, title, body, id):
     db = get_db()
     db.execute(
-      'UPDATE post SET title = ?, body = ?, photo = photo'
+      'UPDATE post SET title = ?, body = ?'
       ' WHERE id = ?',
-      (title, body, id, photo)
+      (title, body, id)
     )
     db.commit()
 

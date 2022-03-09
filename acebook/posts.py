@@ -84,7 +84,6 @@ def create():
             else:
                 photo_binary = None                
             Post.create(title, body, g.user.id, photo_binary)
-            print('this below is post.create')
             # if photo_binary != None:
                 # os.remove(os.path.join("acebook/static/uploaded_pics", uploaded_file.filename))
             return redirect(url_for('posts.index'))
@@ -92,10 +91,8 @@ def create():
     return render_template('posts/create.html')
 
 def convertToBinaryData(filename):
-    print('convert working')
     with open(filename, 'rb') as file:
         blobData = file.read()
-        print(blobData)
     return blobData 
 
 def get_post(id, check_author=True):
@@ -117,7 +114,6 @@ def update(id):
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
-        photo = photo
         error = None
 
         if not title:
@@ -127,7 +123,7 @@ def update(id):
             flash(error)
         else:
             db = get_db()
-            post.update(title, body, id, photo)
+            post.update(title, body, id)
             return redirect(url_for('posts.index'))
 
     return render_template('posts/update.html', post=post)

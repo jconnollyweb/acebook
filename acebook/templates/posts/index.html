@@ -43,7 +43,7 @@
     {% for comment in comments %}
       {% if post.id == comment.post_id %}
          <div class="comment">
-           <h3>"{{ comment.comment_body}}"</h3> <p>commented on by <a href="#">{{comment.user_id }}</a> </p><hr>
+           <h3>"{{ comment.comment_body}}"</h3> <p>commented on by <a href="#">{{ comment.user_id }}</a> </p><hr>
          </div>
       {% endif %}
     {% endfor %}

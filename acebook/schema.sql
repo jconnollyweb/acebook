@@ -8,6 +8,16 @@ CREATE TABLE user (
   password TEXT NOT NULL
 );
 
+CREATE TABLE profile (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  users_id INTEGER NOT NULL,
+  bio TEXT NOT NULL,
+  photo BLOB,
+  FOREIGN KEY (users_id) REFERENCES user (id),
+  FOREIGN KEY (username) REFERENCES user (username)
+);
+
 CREATE TABLE post (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   author_id INTEGER NOT NULL,

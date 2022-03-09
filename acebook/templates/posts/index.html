@@ -15,7 +15,6 @@
           <div>
             <h1>{{ post.title }}</h1>
             <div class="about">by {{ post.username }} on {{ post.created.strftime('%Y-%m-%d') }}</div>
-            <p class="body">{{ post.body }}</p>
           </div>
           {% if g.user.id == post.author_id %}
             <a class="action" href="{{ url_for('posts.update', id=post.id) }}">Edit</a>
@@ -27,11 +26,14 @@
             <input type="submit" value="Like" >
           </form>
         <p> Liked by: </p>
-        {% for like in likes %}
-          {% if post.id == like.post_id %}
-               <p>{{ like.user_id }}</p>
-          {% endif %}
-        {% endfor %}
+        {% set exists = [] %}
+          {% for like in likes %}
+            {% if post.id == like.post_id %}
+                {% if exists.append(1) %}{% endif %}
+                <p>{{ like.user_id }}</p>
+            {% endif %}
+          {% endfor %}
+        <p style="color:rgb(189, 65, 65);"> &hearts; {{ exists|length }} </p>
         </div>
       </header>
       {% if post.pic %}
@@ -43,7 +45,7 @@
     {% for comment in comments %}
       {% if post.id == comment.post_id %}
          <div class="comment">
-           <h3>"{{ comment.comment_body}}"</h3> <p>commented on by <a href="#">{{comment.user_id }}</a> </p><hr>
+           <h3>"{{ comment.comment_body }}"</h3> <p>commented on by <a href="#">{{ comment.user_id }}</a> at {{ comment.created.strftime("%H:%M") }} on {{ comment.created.strftime("%a %d %b") }} </p><hr>
          </div>
       {% endif %}
     {% endfor %}

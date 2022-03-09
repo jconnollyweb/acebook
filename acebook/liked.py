@@ -22,13 +22,13 @@ class Like():
   def all(cls):
     db = get_db()
     likes = db.execute(
-      'SELECT l.id, users_id, posts_id'
+      'SELECT l.id, u.username, posts_id'
       ' FROM likes l JOIN user u ON l.users_id = u.id'
     ).fetchall()
 
     return [
       Like(
-        like['users_id'],
+        like['username'],
         like['posts_id'],
       ) for like in likes
     ]
@@ -62,13 +62,13 @@ class Like():
       
 #       return likes['username']
     
-#   def username_list(self, post_id):
-#       liked_list = get_db().execute('SELECT DISTINCT username'
-#         ' FROM likes l JOIN user u ON l.users_id = u.id'
-#         ' WHERE l.posts_id = ?',
-#         (post_id,)
-#       ).fetchall()
-#       return liked_list
+  def username_list(self, post_id):
+      liked_list = get_db().execute('SELECT DISTINCT username'
+        ' FROM likes l JOIN user u ON l.users_id = u.id'
+        ' WHERE l.posts_id = ?',
+        (post_id,)
+      ).fetchall()
+      return liked_list
     
     
       

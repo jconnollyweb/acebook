@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block header %}
 <h1 class="text-center">{% block title %}Posts{% endblock %}</h1>
 {% if g.user %}
-<a class="action" href="{{ url_for('posts.create') }}">New</a>
+<a class="action" href="{{ url_for('posts.create') }}" class="text-decoration-none">New</a>
 {% endif %} {% endblock %} {% block content %} {% for post in posts %}
 <article class="post">
   <div class="message container d-flex flex-column">
@@ -35,16 +35,7 @@
             </p>
           </div>
 
-          <!-- {% set ns = namespace(display='block') %}
-          {% for like in likes %}
-          {% set ns.display = 'test' %}{% set log = g.user.id | int %}{% set like_id = like.user_id | int %}
-            {% if log == like_id %}
-              {% set ns.display = 'display' %}
-            {% else %}
-                  {% set ns.display = 'block' %}
-            {% endif %}
-          {% endfor %}
-          {{ ns.display }}               -->
+        
 
           <div class="col-sm d-flex flex-row justify-content-end">
             <form action="/" method="post" class="like-button-form">

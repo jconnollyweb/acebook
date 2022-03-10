@@ -6,16 +6,17 @@ html {
    padding: 1rem;
    font-family: 'Josefin Sans', sans-serif !important;
    background-image: url("background.jpg");
-   background-size: cover;
+   display: flex;
+   justify-content: center;
 
 }
 
 body {
-   /* max-width: 960px; */
+   max-width: 960px; 
    padding: 20px;
-   margin: 0 auto;
+   margin: auto;
    font-family: 'Josefin Sans', sans-serif !important;
-
+   background: rgba(255, 255, 255, 0.719) !important;
 }
 
 

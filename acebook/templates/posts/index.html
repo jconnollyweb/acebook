@@ -22,7 +22,7 @@
         <div class="row">
           <div class="col-sm d-flex flex-row">
             <p>
-               {% set exists = [] %}
+              {% set exists = [] %}
               Liked by 
               {% set ns = namespace(display='block') %}
               {% set ns = namespace(display2='none') %}
@@ -53,7 +53,7 @@
           </div>
 
         
-
+          
           <div class="col-sm d-flex flex-row justify-content-end">
             <form action="/" method="post" class="like-button-form" style="display: {{ ns.display }}">
               <input type="hidden" name="user_id" value="{{ g.user.id }}" />

@@ -109,3 +109,11 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
+
+
+@bp.route('/friends')
+def friends():
+    # db = get_db()
+    # users = db.execute("SELECT username FROM user").fetchall()
+
+    return render_template('auth/friends.html')    

@@ -24,19 +24,19 @@
             <p>
               {% set exists = [] %}
               Liked by 
-              {% set ns = namespace(display='block') %}
-              {% set ns = namespace(display2='none') %}
+              {% set ns = namespace(display='') %}
+              {% set ns = namespace(display2='d-none') %}
 
               {% for like in likes %} {% if post.id == like.post_id %}
               {% set ns.display = 'test' %}{% set log = g.user.id | int %}{% set like_id = like.user_id | int %}
               {% if log == like_id %}
               
-              {% set ns.display = 'none' %}
-              {% set ns.display2 = 'block' %}
+              {% set ns.display = 'd-none' %}
+              {% set ns.display2 = '' %}
 
               {% else %}
-              {% set ns.display = 'block' %}
-              {% set ns.display2 = 'none' %}
+              {% set ns.display = '' %}
+              {% set ns.display2 = 'd-none' %}
                   
               {% endif %}
               {% if exists.append(1) %}{% endif %}
@@ -53,15 +53,15 @@
           </div>
 
         
-          
+
           <div class="col-sm d-flex flex-row justify-content-end">
-            <form action="/" method="post" class="like-button-form" style="display: {{ ns.display }}">
+            <form action="/" method="post" class="like-button-form {{ ns.display }}">
               <input type="hidden" name="user_id" value="{{ g.user.id }}" />
               <input type="hidden" name="post_id" value="{{ post.id }}" />
               <input type="submit" value="Like" />
             </form>
             
-            <form action="/dislike" method="post" class="like-button-form" style="display: {{ ns.display2 }}">
+            <form action="/dislike" method="post" class="like-button-form {{ ns.display2 }}">
               <input type="hidden" name="user_id" value="{{ g.user.id }}" />
               <input type="hidden" name="post_id" value="{{ post.id }}" />
               <input type="submit" value="Dislike" />

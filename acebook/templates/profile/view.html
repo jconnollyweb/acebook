@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>View my Profile</H1>
+
+{% set bio = "This is my bio" %} 
+{% set image = "../static/images/panda.jpeg" %} 
+
+<p>Username: {{ g.user.username }}</p>
+<p>ID: {{ g.user.id }}</p>
+<img  src="{{ image }}" width="300">
+<p>My bio: {{ bio }}</p>
+
+
+{% endblock %}

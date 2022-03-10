@@ -43,7 +43,7 @@ def register():
             flash(f"Registration success! Welcome {username}.")
             user = User.find(username)
             session['user_id'] = user.id
-            return redirect(url_for('profile'))
+            return redirect(url_for('profile.view'))
             
             # this can be altered to redirect to a different route - use of sessions to log in after registering?
 

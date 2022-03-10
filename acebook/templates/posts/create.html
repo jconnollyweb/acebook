@@ -7,7 +7,7 @@
 {% block content %}
   <form method="post" enctype="multipart/form-data">
     <label for="title">Title</label>
-    <input name="title" id="title" value="{{ request.form['title'] }}" required>
+    <input name="title" id="title" value="{{ request.form['title'] }}" required maxlength="20">
     <label for="body">Body</label>
     <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
     <label for="photo">Photo</label>

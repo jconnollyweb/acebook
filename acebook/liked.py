@@ -17,6 +17,16 @@ class Like():
         (user_id, post_id)
       )
       db.commit()
+  
+  @classmethod
+  def delete(cls, user_id, post_id):
+    db = get_db()
+    db.execute(
+      'DELETE FROM likes'
+      ' WHERE users_id = ? AND posts_id = ?',
+      (user_id, post_id)
+    )
+    db.commit()
 
   @classmethod
   def all(cls):

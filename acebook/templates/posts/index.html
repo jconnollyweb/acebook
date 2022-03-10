@@ -35,30 +35,16 @@
             </p>
           </div>
 
-          <!-- {% set ns = namespace(found=false) %}
-          {% for item in items %}
-              {% if item.check_something() %}
-                  {% set ns.found = true %}
-              {% endif %}
-              * {{ item.title }}
-          {% endfor %}
-          Found item having something: {{ ns.found }} -->
-
-
           <!-- {% set ns = namespace(display='block') %}
           {% for like in likes %}
-          {% set ns.display = 'test' %}
-
-            {% if g.user.id == like.user_id %}
-      
-                  {% set ns.display = 'display' %}
+          {% set ns.display = 'test' %}{% set log = g.user.id | int %}{% set like_id = like.user_id | int %}
+            {% if log == like_id %}
+              {% set ns.display = 'display' %}
             {% else %}
                   {% set ns.display = 'block' %}
             {% endif %}
           {% endfor %}
-          {{ ns.display }}
-          {{ g.user.id }}
-          {{ ns.display }} -->
+          {{ ns.display }}               -->
 
           <div class="col-sm d-flex flex-row justify-content-end">
             <form action="/" method="post" class="like-button-form">

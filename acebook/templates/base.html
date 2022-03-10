@@ -3,18 +3,20 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <nav>
   <a href="/">
-    <h1>Acebook</h1>
+    Acebook
   </a>
   <ul>
     {% if g.user %}
       <li><a href="profile">{{ g.user.username }}'s Profile</a></li>
-      <li><a href="#">Friends</a></li>
+      <li><a href="{{ url_for('auth.friends') }}">Friends</a></li>
       <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
     {% else %}
       <li><a href="{{ url_for('auth.register') }}">Register</a></li>
       <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
     {% endif %}
+    
   </ul>
+  <img class="logo" src="{{ url_for('static', filename='logo.jpg') }}" style="width:200px;">
 </nav>
 <section class="content">
   <header>

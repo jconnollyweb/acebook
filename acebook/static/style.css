@@ -1,36 +1,52 @@
 html {
    font-family: sans-serif;
-   background: #eee;
+   background: rgb(36, 110, 58);
    padding: 1rem;
    font-family: sans-serif;
+   background-image: url("background.jpg");
+   background-size: cover;
+   
 }
 
 body {
    max-width: 960px;
    margin: 0 auto;
-   background: white;
+   background: rgb(249, 250, 182);
+   
+   
 }
+
+
 
 h1 {
    /* font-family: serif; */
-   color: #377ba8;
+   color: #0c0c0c;
+   border-color: black;
+   /* text-shadow: 2px 2px #020202; */
    margin: 1rem 0;
+   font-size: 36px;
 }
 
 a {
-   color: #377ba8;
+   color: #ffffff;
+   font-size: 26px;
 }
 
 hr {
    border: none;
-   border-top: 1px solid lightgray;
+   border-top: 1px solid rgba(22, 150, 28, 0.733);
 }
 
 nav {
-   background: lightgray;
+   background: rgb(3, 3, 3);
    display: flex;
    align-items: center;
-   padding: 0 0.5rem;
+   
+   color: #fdfbfb;
+   border-color: black;
+   /* text-shadow: 2px 2px #020202; */
+   margin: 1rem 0;
+   font-size: 36px;
 }
 
 nav h1 {
@@ -41,20 +57,34 @@ nav h1 {
 nav h1 a {
    text-decoration: none;
    padding: 0.25rem 0.5rem;
+   
+}
+
+nav a {
+   color: #fdfbfb;
+   font-size: 46px;
+   padding: 0 0.5rem;
 }
 
 nav ul  {
    display: flex;
    list-style: none;
    margin: 0;
-   padding: 0;
+   
+   
 }
+
 
 nav ul li a, nav ul li span, header .action {
    display: block;
    padding: 0.5rem;
+   font-size: 15px;
 }
 
+nav img {
+   padding-left: 317px;
+
+}
 .content {
    padding: 0 1rem 1rem;
 }
@@ -168,3 +198,4 @@ header{
 .likes_section input:hover{
    background-color: goldenrod;
 }
+
